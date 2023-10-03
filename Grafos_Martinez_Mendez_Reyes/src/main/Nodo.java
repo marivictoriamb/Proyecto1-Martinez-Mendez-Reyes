@@ -7,9 +7,11 @@ package main;
 public class Nodo {
     private String dato;
     private Nodo next;
+    private int id;
     
-    public Nodo (String dato) {
+    public Nodo (String dato, int id) {
         this.dato = dato;
+        this.id = id;
         next = null;
     }
 
@@ -28,6 +30,15 @@ public class Nodo {
     public void setNext(Nodo next) {
         this.next = next;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     
     
     

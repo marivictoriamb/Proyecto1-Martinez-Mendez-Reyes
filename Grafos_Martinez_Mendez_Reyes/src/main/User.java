@@ -18,7 +18,7 @@ public class User {
         
         // Buscar cantidad de usuarios/vertices
         for (int i = 0; i < divide.length; i++){
-            if (!divide[i].replaceAll("\\p{C}", "").equals("usuarios") & !divide[i].replaceAll("\\p{C}", "").equals("relaciones")){
+            if (!divide[i].replaceAll("\\p{C}", "").equals("usuarios") && !divide[i].replaceAll("\\p{C}", "").equals("relaciones")){
                 size ++;
             } else if (divide[i].replaceAll("\\p{C}", "").equals("relaciones")){
                 break;
@@ -30,7 +30,7 @@ public class User {
         // Agregar usuarios/vertices
         for (int i = 0; i < divide.length; i++){
             if (!divide[i].replaceAll("\\p{C}", "").equals("usuarios") & !divide[i].replaceAll("\\p{C}", "").equals("relaciones")){
-                grafo.insertaVertice(divide[i]);
+                grafo.insertaVertice(divide[i], i-1);
             } else if (divide[i].replaceAll("\\p{C}", "").equals("relaciones")){
                 start  = i+1;
                 break;
@@ -41,7 +41,8 @@ public class User {
         for (int i = start; i < divide.length; i++){
             String datos[] = divide[i].split(", ");
             int posicion = grafo.buscarUsuario(datos[0].replaceAll("\\p{C}", ""));
-            grafo.insertarConeccion(posicion, datos[1]);
+            int id = grafo.buscarId(datos[1].replaceAll("\\p{C}", ""));
+            grafo.insertarConeccion(posicion, datos[1], id);
         }
         
                 
