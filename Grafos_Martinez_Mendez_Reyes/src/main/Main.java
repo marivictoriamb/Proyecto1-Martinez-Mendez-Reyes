@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileReader;
 import javax.swing.JFileChooser;    
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -20,8 +21,9 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
-        this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.setLocationRelativeTo(null);
+
     }
 
     /**
@@ -38,7 +40,7 @@ public class Main extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(102, 153, 255));
@@ -50,87 +52,76 @@ public class Main extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Nombre Grafos");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 310, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 310, -1));
 
+        jButton1.setBackground(new java.awt.Color(204, 204, 204));
         jButton1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 0, 51));
         jButton1.setText("Cargar Archivo");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, -1, -1));
 
+        jButton2.setBackground(new java.awt.Color(204, 204, 204));
         jButton2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(0, 0, 51));
         jButton2.setText("Mostrar Grafos");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 410, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 410, -1, -1));
 
+        jButton3.setBackground(new java.awt.Color(204, 204, 204));
         jButton3.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(0, 0, 51));
         jButton3.setText("Modificar Grafos");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 410, -1, -1));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 410, -1, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\mariv\\Downloads\\1696051491834.png")); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));
+        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\mariv\\Downloads\\1696051491834.png")); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    public void setDato(User user){
-        this.user = user;
-    }
-    
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JFileChooser buscador = new JFileChooser();
-        
-        // Abrimos la ventana
-        int seleccion = buscador.showOpenDialog(this);
-
-        // Si el usuario acepta la opcion de archivo
-        if (seleccion == JFileChooser.APPROVE_OPTION){
-            // Selecciona el fichero
-            File fichero = buscador.getSelectedFile( );
-            try (FileReader lector = new FileReader (fichero) ) {
-                String contenido = "";
-                int valor = lector.read( );
-
-                while (valor != -1){
-                        contenido += (char)valor;
-                        valor = lector.read( );
-                }
-                
-                user.Save(contenido);
-            } catch (Exception e){
-                    e.printStackTrace( );
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        //Main de la interfaz modify graphs
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                ModifyGraphs i3 = new ModifyGraphs();
+                i3.setDato(user);
+                i3.setVisible(true);
             }
-        } 
+        });
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+        // Ocultar esta interfaz
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
-        if (user.getSize() > 0){
+
+        if (user.getGrafo() != null){
             // El main de la interfaz de show graphs
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
@@ -147,21 +138,47 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        //Main de la interfaz modify graphs
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                ModifyGraphs i3 = new ModifyGraphs();
-                i3.setDato(user);
-                i3.setVisible(true);
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        JFileChooser buscador = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
+        buscador.setFileFilter(filter);
+
+        // Abrimos la ventana
+        int seleccion = buscador.showOpenDialog(this);
+
+        // Si el usuario acepta la opcion de archivo
+        if (seleccion == JFileChooser.APPROVE_OPTION){
+            // Selecciona el fichero
+            File fichero = buscador.getSelectedFile( );
+            
+            String fileType = buscador.getTypeDescription(fichero);
+            
+            try (FileReader lector = new FileReader (fichero) ) {
+                String contenido = "";
+                int valor = lector.read( );
+
+                while (valor != -1){
+                    contenido += (char)valor;
+                    valor = lector.read( );
+                }
+                
+                if (contenido.contains("usuarios") && contenido.contains("relaciones") && fileType.equals("Text Document")){
+                    user.Save(contenido);
+                } else {
+                    JOptionPane.showMessageDialog(null, "ERROR!\nCargue un archivo valido");
+                }
+                
+            } catch (Exception e){
+                e.printStackTrace( );
             }
-        });
-        
-        // Ocultar esta interfaz
-        this.setVisible(false);
-    }//GEN-LAST:event_jButton3ActionPerformed
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    public void setDato(User user){
+        this.user = user;
+    }
     
+        
   
     /**
      * @param args the command line arguments
@@ -204,7 +221,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

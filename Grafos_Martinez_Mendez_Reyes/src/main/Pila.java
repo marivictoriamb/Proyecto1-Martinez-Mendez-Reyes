@@ -6,7 +6,7 @@ package main;
  * @author mariv
  */
 public class Pila {  
-    private Nodo head; 
+    private NodoPila head; 
     private int size = 0;
     
     public Pila(){
@@ -21,8 +21,8 @@ public class Pila {
     
     
     // Metodo para ingresar un nodo en la pila
-    public void InsertarNodo(String dato){
-        Nodo nuevo = new Nodo(dato);
+    public void InsertarNodo(int id){
+        NodoPila nuevo = new NodoPila(id);
         
         if (IsEmpty()){
             head = nuevo;
@@ -34,9 +34,14 @@ public class Pila {
     }
     
     // Metodo para eliminar un nodo de la pila
-    public void EliminarNodo(){
-        Nodo recorrido = head.getNext();
+    public int EliminarNodo(){
+        int id = head.getId();
+        NodoPila recorrido = head.getNext();
         head = recorrido;
         size --;
+        
+        return id;
     }
+    
+   
 }

@@ -21,8 +21,8 @@ public class Lista {
         return head == null;
     }
     
-    public void Insertar(String dato){
-        Nodo nuevo = new Nodo(dato);
+    public void Insertar(String dato, int id){
+        Nodo nuevo = new Nodo(dato, id);
         
         if (IsEmpty()){
             head = nuevo;
