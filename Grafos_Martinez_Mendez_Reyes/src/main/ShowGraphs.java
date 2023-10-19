@@ -12,6 +12,8 @@ import javax.swing.JOptionPane;
  */
 public class ShowGraphs extends javax.swing.JFrame {
     User user = new User();
+    private String [] filetxt;
+    
 
     /**
      * Creates new form ShowGraphs
@@ -107,9 +109,6 @@ public class ShowGraphs extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, -1, -1));
-
-        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\mariv\\Downloads\\1696051491822.png")); // NOI18N
-        jLabel8.setText("jLabel8");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));
 
         pack();
@@ -118,6 +117,11 @@ public class ShowGraphs extends javax.swing.JFrame {
     public void setDato(User user){
         this.user = user;
     }
+
+    public void setFiletxt(String[] filetxt) {
+        this.filetxt = filetxt;
+    }
+    
     
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
         
@@ -126,6 +130,7 @@ public class ShowGraphs extends javax.swing.JFrame {
             public void run() {
                 Main main = new Main();
                 main.setDato(user);
+                main.setFiletxt(filetxt);
                 main.setVisible(true);
             }
         });

@@ -12,8 +12,8 @@ public class User {
     }
     
     
-    public void Save(String contenido){
-        String [] divide = contenido.split("\n");
+    public void Save(String []divide){
+        
         int start = 0;
         
         // Buscar cantidad de usuarios/vertices
