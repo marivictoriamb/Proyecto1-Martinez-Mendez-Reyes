@@ -91,7 +91,7 @@ public class ShowGraphs extends javax.swing.JFrame {
         jToggleButton2.setBackground(new java.awt.Color(204, 204, 204));
         jToggleButton2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jToggleButton2.setForeground(new java.awt.Color(0, 0, 51));
-        jToggleButton2.setText("< --");
+        jToggleButton2.setText("⬅");
         jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton2ActionPerformed(evt);
