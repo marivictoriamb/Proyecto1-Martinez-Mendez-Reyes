@@ -17,6 +17,7 @@ public class Main extends javax.swing.JFrame {
     private User user = new User();
     private String [] filetxt;
     private File direcciontxt;
+    private boolean savetxt= false;
 
     
     /**
@@ -43,8 +44,9 @@ public class Main extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(102, 153, 255));
@@ -90,7 +92,6 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 410, -1, -1));
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));
 
         jButton5.setBackground(new java.awt.Color(204, 204, 204));
         jButton5.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
@@ -101,13 +102,21 @@ public class Main extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, -1, -1));
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 6, -1, 20));
+
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/ImagenMain.png"))); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 500));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,25 +127,41 @@ public class Main extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        
+        if (user.getGrafo() != null){
+            String contenidonew="";
+            for (int i = 0; i < filetxt.length; i++) {
+                contenidonew = contenidonew+filetxt[i].replaceAll("\\p{C}", "")+"\n";
+            }
+            Utils.ActualizarFile(direcciontxt, contenidonew);
+            JOptionPane.showMessageDialog(null, "El archivo se ha actualizado exitosamente.");
+            savetxt=true;
+        }else{
+            JOptionPane.showMessageDialog(null, "ERROR! \n No se ha cargado ningun archivo");
+        }
+
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //Main de la interfaz modify graphs
         if(user.getGrafo() != null){
             java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                ModifyGraphs i3 = new ModifyGraphs();
-                i3.setDato(user);
-                i3.setFiletxt(filetxt);
-                i3.setDirecciontxt(direcciontxt);
-                i3.setVisible(true);
-            }
-        });
+                public void run() {
+                    ModifyGraphs i3 = new ModifyGraphs();
+                    i3.setDato(user);
+                    i3.setFiletxt(filetxt);
+                    i3.setDirecciontxt(direcciontxt);
+                    i3.setVisible(true);
+                }
+            });
 
-        // Ocultar esta interfaz
-        this.setVisible(false);
+            // Ocultar esta interfaz
+            this.setVisible(false);
         }else{
             JOptionPane.showMessageDialog(rootPane, "ERROR\n\nNo se ha cargado ningun archivo todavia" );
         }
-        
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -161,7 +186,11 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JFileChooser buscador = new JFileChooser();
+        
+        if (user.getGrafo() != null && savetxt == false){
+            JOptionPane.showMessageDialog(null, "ALERTA! \n Recuerde guardar los cambios antes de subir un nuevo archivo.");
+        }else{
+            JFileChooser buscador = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
         buscador.setFileFilter(filter);
 
@@ -172,9 +201,9 @@ public class Main extends javax.swing.JFrame {
         if (seleccion == JFileChooser.APPROVE_OPTION){
             // Selecciona el fichero
             File fichero = buscador.getSelectedFile( );
-            
+
             String fileType = buscador.getTypeDescription(fichero);
-            
+
             try (FileReader lector = new FileReader (fichero) ) {
                 String contenido = "";
                 int valor = lector.read( );
@@ -183,36 +212,24 @@ public class Main extends javax.swing.JFrame {
                     contenido += (char)valor;
                     valor = lector.read( );
                 }
-                
+
                 if (contenido.contains("usuarios") && contenido.contains("relaciones") && (fileType.equals("Text Document")) ||fileType.equals("Documento de texto")){
                     String [] divide = contenido.split("\n");
                     filetxt= divide;
                     user.Save(filetxt);
                     setDirecciontxt(fichero);
-                    
+
                 } else {
                     JOptionPane.showMessageDialog(null, "ERROR!\nCargue un archivo valido");
                 }
-                
+
             } catch (Exception e){
                 e.printStackTrace( );
             }
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        if (user.getGrafo() != null){
-            String contenidonew="";
-        for (int i = 0; i < filetxt.length; i++) {
-            contenidonew = contenidonew+filetxt[i].replaceAll("\\p{C}", "")+"\n";
-        }
-        Utils.ActualizarFile(direcciontxt, contenidonew);
-        JOptionPane.showMessageDialog(null, "El archivo se ha actualizado exitosamente.");
-        }else{
-            JOptionPane.showMessageDialog(null, "ERROR! \n No se ha cargado ningun archivo");
         }
         
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public void setDato(User user){
         this.user = user;
@@ -274,5 +291,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }

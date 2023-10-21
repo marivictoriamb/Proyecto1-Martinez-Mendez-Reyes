@@ -56,6 +56,8 @@ public class ModifyGraphs extends javax.swing.JFrame {
         Box2 = new javax.swing.JComboBox<>();
         Relacionar = new javax.swing.JButton();
         Llenarbox = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -136,14 +138,17 @@ public class ModifyGraphs extends javax.swing.JFrame {
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, -1, -1));
 
         Box1.setBackground(new java.awt.Color(255, 255, 255));
+        Box1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         Box1.setForeground(new java.awt.Color(0, 0, 51));
         getContentPane().add(Box1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 370, -1, -1));
 
         Box2.setBackground(new java.awt.Color(255, 255, 255));
+        Box2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         Box2.setForeground(new java.awt.Color(0, 0, 51));
         getContentPane().add(Box2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 370, -1, -1));
 
         Relacionar.setBackground(new java.awt.Color(255, 255, 255));
+        Relacionar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         Relacionar.setForeground(new java.awt.Color(0, 0, 51));
         Relacionar.setText("Relacionar");
         Relacionar.addActionListener(new java.awt.event.ActionListener() {
@@ -163,6 +168,12 @@ public class ModifyGraphs extends javax.swing.JFrame {
             }
         });
         getContentPane().add(Llenarbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 370, -1, -1));
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, -1, -1));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/ImagenModify.png"))); // NOI18N
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 490));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -285,7 +296,9 @@ public class ModifyGraphs extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
