@@ -16,6 +16,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class Main extends javax.swing.JFrame {
     private User user = new User();
     private String [] filetxt;
+    private File direcciontxt;
 
     
     /**
@@ -43,6 +44,7 @@ public class Main extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(102, 153, 255));
@@ -88,9 +90,18 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 410, -1, -1));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\mariv\\Downloads\\1696051491834.png")); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));
+
+        jButton5.setBackground(new java.awt.Color(204, 204, 204));
+        jButton5.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(0, 0, 51));
+        jButton5.setText("Guardar Cambios");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -115,6 +126,7 @@ public class Main extends javax.swing.JFrame {
                 ModifyGraphs i3 = new ModifyGraphs();
                 i3.setDato(user);
                 i3.setFiletxt(filetxt);
+                i3.setDirecciontxt(direcciontxt);
                 i3.setVisible(true);
             }
         });
@@ -136,6 +148,7 @@ public class Main extends javax.swing.JFrame {
                     ShowGraphs i2 = new ShowGraphs();
                     i2.setDato(user);
                     i2.setFiletxt(filetxt);
+                    i2.setDirecciontxt(direcciontxt);
                     i2.setVisible(true);
                 }
             });
@@ -175,6 +188,7 @@ public class Main extends javax.swing.JFrame {
                     String [] divide = contenido.split("\n");
                     filetxt= divide;
                     user.Save(filetxt);
+                    setDirecciontxt(fichero);
                     
                 } else {
                     JOptionPane.showMessageDialog(null, "ERROR!\nCargue un archivo valido");
@@ -186,6 +200,20 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        if (user.getGrafo() != null){
+            String contenidonew="";
+        for (int i = 0; i < filetxt.length; i++) {
+            contenidonew = contenidonew+filetxt[i].replaceAll("\\p{C}", "")+"\n";
+        }
+        Utils.ActualizarFile(direcciontxt, contenidonew);
+        JOptionPane.showMessageDialog(null, "El archivo se ha actualizado exitosamente.");
+        }else{
+            JOptionPane.showMessageDialog(null, "ERROR! \n No se ha cargado ningun archivo");
+        }
+        
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     public void setDato(User user){
         this.user = user;
     }
@@ -195,6 +223,9 @@ public class Main extends javax.swing.JFrame {
 
     public String[] getFiletxt() {
         return filetxt;
+    }
+    public void setDirecciontxt(File direcciontxt) {
+        this.direcciontxt = direcciontxt;
     }
     
         
@@ -239,6 +270,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;

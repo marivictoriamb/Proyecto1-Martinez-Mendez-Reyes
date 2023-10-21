@@ -4,6 +4,7 @@
  */
 package main;
 
+import java.io.File;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,6 +14,7 @@ import javax.swing.JOptionPane;
 public class ShowGraphs extends javax.swing.JFrame {
     User user = new User();
     private String [] filetxt;
+    private File direcciontxt;
     
 
     /**
@@ -121,6 +123,11 @@ public class ShowGraphs extends javax.swing.JFrame {
     public void setFiletxt(String[] filetxt) {
         this.filetxt = filetxt;
     }
+
+    public void setDirecciontxt(File direcciontxt) {
+        this.direcciontxt = direcciontxt;
+    }
+    
     
     
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
@@ -131,6 +138,7 @@ public class ShowGraphs extends javax.swing.JFrame {
                 Main main = new Main();
                 main.setDato(user);
                 main.setFiletxt(filetxt);
+                main.setDirecciontxt(direcciontxt);
                 main.setVisible(true);
             }
         });
