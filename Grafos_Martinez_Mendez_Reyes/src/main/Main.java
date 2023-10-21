@@ -171,10 +171,11 @@ public class Main extends javax.swing.JFrame {
                     valor = lector.read( );
                 }
                 
-                if (contenido.contains("usuarios") && contenido.contains("relaciones") && (fileType.equals("Text Document")) ||fileType.equals("Documento de texto")){
+                if (contenido.contains("usuarios") && contenido.contains("relaciones") && (fileType.equals("Text Document") ) ||fileType.equals("Documento de texto") ||fileType.equals("Generic File")){
                     String [] divide = contenido.split("\n");
                     filetxt= divide;
                     user.Save(filetxt);
+                    JOptionPane.showMessageDialog(null, "El archivo ha sido cargado exitosamente 😁");
                     
                 } else {
                     JOptionPane.showMessageDialog(null, "ERROR!\nCargue un archivo valido");
