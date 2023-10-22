@@ -140,12 +140,12 @@ public class ModifyGraphs extends javax.swing.JFrame {
         Box1.setBackground(new java.awt.Color(255, 255, 255));
         Box1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         Box1.setForeground(new java.awt.Color(0, 0, 51));
-        getContentPane().add(Box1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 370, -1, -1));
+        getContentPane().add(Box1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, -1, -1));
 
         Box2.setBackground(new java.awt.Color(255, 255, 255));
         Box2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         Box2.setForeground(new java.awt.Color(0, 0, 51));
-        getContentPane().add(Box2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 370, -1, -1));
+        getContentPane().add(Box2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 370, -1, -1));
 
         Relacionar.setBackground(new java.awt.Color(255, 255, 255));
         Relacionar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -156,7 +156,7 @@ public class ModifyGraphs extends javax.swing.JFrame {
                 RelacionarActionPerformed(evt);
             }
         });
-        getContentPane().add(Relacionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 370, -1, -1));
+        getContentPane().add(Relacionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 370, -1, -1));
 
         Llenarbox.setBackground(new java.awt.Color(255, 255, 255));
         Llenarbox.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -167,7 +167,7 @@ public class ModifyGraphs extends javax.swing.JFrame {
                 LlenarboxActionPerformed(evt);
             }
         });
-        getContentPane().add(Llenarbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 370, -1, -1));
+        getContentPane().add(Llenarbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, -1, -1));
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, -1, -1));
@@ -210,10 +210,15 @@ public class ModifyGraphs extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void AgregarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarNombreActionPerformed
+        Grafo nuevografo = new Grafo(filetxt.length+1);
         String nombre = TextNombre.getText();
         TextNombre.setText("Agrege el nombre de usuario (@ejemplo)");
-        setFiletxt(Utils.AñadirUsuario(nombre, filetxt));
+        setFiletxt(nuevografo.AñadirUsuario(nombre, filetxt));
         user.Save(filetxt);
+        for (int i = 1; !filetxt[i].replaceAll("\\p{C}", "").equals("relaciones"); i++) {
+                 Box1.addItem(filetxt[i].replaceAll("\\p{C}", ""));
+                 Box2.addItem(filetxt[i].replaceAll("\\p{C}", ""));
+                     }
 
     }//GEN-LAST:event_AgregarNombreActionPerformed
 
@@ -229,11 +234,12 @@ public class ModifyGraphs extends javax.swing.JFrame {
     }//GEN-LAST:event_LlenarboxActionPerformed
 
     private void RelacionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RelacionarActionPerformed
+        Grafo nuevografo = new Grafo(filetxt.length+1);
         if(Box1.getSelectedItem().toString().equals(Box2.getSelectedItem())){
             JOptionPane.showMessageDialog(null, "Error! \n Se deben relacionar ususarios diferentes.");
         }else{
             String relacion = Box1.getSelectedItem().toString()+", "+Box2.getSelectedItem();
-            setFiletxt(Utils.RelacionarUsuario(relacion, filetxt));
+            setFiletxt(nuevografo.RelacionarUsuario(relacion, filetxt));
             user.Save(filetxt);
         }
 

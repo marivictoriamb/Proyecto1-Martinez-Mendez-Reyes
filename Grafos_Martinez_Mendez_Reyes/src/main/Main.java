@@ -134,7 +134,7 @@ public class Main extends javax.swing.JFrame {
             for (int i = 0; i < filetxt.length; i++) {
                 contenidonew = contenidonew+filetxt[i].replaceAll("\\p{C}", "")+"\n";
             }
-            Utils.ActualizarFile(direcciontxt, contenidonew);
+            user.ActualizarFile(direcciontxt, contenidonew);
             JOptionPane.showMessageDialog(null, "El archivo se ha actualizado exitosamente.");
             savetxt=true;
         }else{
