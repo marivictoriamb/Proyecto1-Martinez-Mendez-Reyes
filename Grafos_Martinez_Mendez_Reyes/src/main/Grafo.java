@@ -3,21 +3,27 @@ import java.util.Random;
 import javax.swing.JOptionPane;
 import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.*;
-import org.graphstream.ui.swing_viewer.DefaultView;
-import org.graphstream.ui.swing_viewer.SwingViewer;
 import org.graphstream.ui.view.Viewer;
 
 
 /**
- *
- * @author mariv
- */
+* Descripcion: Clase que se encarga del manejo de los archivos txt y su contenido en el grafo
+* @autor: Maria Martinez
+* @version: 18/10/23      
+*/
 public class Grafo {
     private Lista listaAdy [];
     private int cantidadVertices;
     private int nodos;
     private String SCC;
     
+    
+    /**
+     * Descripcion: Constructor de la clase Grafo
+     * @autor: Maria Martinez
+     * @version: 29/09/23
+     * @param size: Indica la cantidad de usuarios en el grafo
+     */
     public Grafo(int size){
         nodos = size;
         cantidadVertices = 0;
@@ -26,6 +32,14 @@ public class Grafo {
         
     }
     
+    
+    /**
+     * Descripcion: Inserta un vertice en el grafo, es decir, inserta un elemento nodo a la lista adyacente
+     * @autor: Maria Martinez
+     * @version: 29/09/23
+     * @param usuario: Indica el identificador del usuario
+     * @param id: Indica la posicion en la lista del usuario
+     */
     public void insertaVertice (String usuario, int id) {
         if (nodos < cantidadVertices+1){
             JOptionPane.showMessageDialog(null, "Error, se supera el número de nodos máximo del grafo");
@@ -37,6 +51,14 @@ public class Grafo {
         cantidadVertices ++;
     }
     
+    
+    /**
+     * Descripcion: Inserta un vertice en el grafo transpuesto, es decir, inserta un elemento nodo a la lista adyacente transpuesta
+     * @autor: Maria Martinez
+     * @version: 29/09/23
+     * @param usuario: Indica el identificador del usuario
+     * @param id: Indica la posicion en la lista del usuario
+     */
     public void insertaVerticeT (String usuario, int id) {
         if (nodos < cantidadVertices+1){
             JOptionPane.showMessageDialog(null, "Error, se supera el número de nodos máximo del grafo");
@@ -48,10 +70,28 @@ public class Grafo {
         cantidadVertices ++;
     }
     
+    
+    /**
+     * Descripcion: Inserta una coneccion en el grafo, es decir, inserta un nodo usuario a la lista enlazada de un nodo usuario de la lista adyacente
+     * @autor: Maria Martinez
+     * @version: 29/09/23
+     * @param usuario: Indica el identificador del usuario
+     * @param id: Indica la posicion en la lista del usuario
+     * @param i: Indica la posicion en la lista del usuario por el cual es seguido
+     */
     public void insertarConeccion (int i, String usuario, int id) {
         listaAdy[i].Insertar(usuario, id);
     }
     
+    
+    /**
+     * Descripcion: Busca la posicion de un usuario en el grafo / lista adyacente
+     * @autor: Maria Martinez
+     * @version: 29/09/23
+     * @param usuario: Indica el identificador del usuario
+     * @param usuario: Indica el identificador del usuario a buscar
+     * @return Entero que representa la posicion del usuario en la lista adyacente
+     */
     public int buscarUsuario(String usuario){
         int posicion = 0; 
         
@@ -65,6 +105,13 @@ public class Grafo {
         return posicion;
     }
     
+    /**
+     * Descripcion: Busca el id de un usuario en el grafo / lista adyacente
+     * @autor: Maria Martinez
+     * @version: 29/09/23
+     * @param usuario: Indica el identificador del usuario
+     * @return Entero que representa el id del usuario en la lista adyacente
+     */
     public int buscarId(String usuario){
         int id = 0;
         
@@ -79,13 +126,12 @@ public class Grafo {
     }
     
     /**
-     * Nombre: AñadirUsuario
      * Descripcion: Recibe el nombre de un usuario nuevo, de ser valido se modifica el archivo txt para guardar los cambios y se actualiza el grafo.
      * @autor: Mauricio Mendez
      * @version: 18/10/23
-     * @param nombre
-     * @param filetxt
-     * @return filetxt
+     * @param nombre: Identificador (nombre) del usuario
+     * @param filetxt: Archivo de texto con la informacion de los usuarios y sus conecciones
+     * @return Array que contiene el archivo de texto modificado
      */
     public String [] AñadirUsuario(String nombre, String [] filetxt){
         if(nombre.isEmpty()==true || nombre.length()<2 || !Character.toString(nombre.charAt(0)).equals("@")|| nombre.contains(" ") ){
@@ -126,13 +172,12 @@ public class Grafo {
     }
     
     /**
-     * Nombre: RelacionrUsuario
-     * Descripcion: Recibe 2 usuarios existentes en el grafo y crea un ralacion entre ellos si esta no existe.
+     * Descripcion: Recibe 2 usuarios existentes en el grafo y crea un ralacion entre ellos si esta no existe en el archivo txt.
      * @autor: Mauricio Mendez
      * @version: 18/10/23
-     * @param relacion
-     * @param filetxt
-     * @return filetxt
+     * @param relacion: String que contiene la relacion entre dos usuarios
+     * @param filetxt: Archivo de texto con la informacion de los usuarios y sus conecciones
+     * @return Array que contiene el archivo de texto modificado
      */
     public  String [] RelacionarUsuario(String relacion, String [] filetxt){
 //        Verificamos que la relacion no exista previamente.
@@ -160,6 +205,11 @@ public class Grafo {
     
     
     
+    /**
+     * Descripcion: Genera los nodos y aristas del grafo para su representacion visual haciendo uso de la libreria GraphStream
+     * @autor: Maria Martinez
+     * @version: 29/09/23
+     */
     public void Mostrar(){
         Graph graph = new MultiGraph("Grafo");
         System.setProperty("org.graphstream.ui", "swing");
@@ -176,7 +226,7 @@ public class Grafo {
         
         for (int i = 0; i < cantidadVertices; i++){
             String etiquetaA = listaAdy[i].getHead().getDato().replaceAll("\\p{C}", "");
-            Nodo recorrido = listaAdy[i].getHead().getNext();
+            NodoUsuario recorrido = listaAdy[i].getHead().getNext();
             
             while (recorrido != null){
                 String etiquetaB = recorrido.getDato().replaceAll("\\p{C}", "");
@@ -191,71 +241,12 @@ public class Grafo {
         viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
     }
     
-    public String DFSUtil(int id, boolean visited[]) {
-        visited[id] = true;
-        int n;
-        Nodo recorrido = listaAdy[id].getHead().getNext();
-        
-        if (recorrido!=null){
-            while (recorrido != null){
-            n = recorrido.getId();
-            if (!visited[n]){
-                SCC += Integer.toString(n) + ",";
-                DFSUtil(n, visited);
-            }
-            recorrido = recorrido.getNext();
-            }
-        }
-        
-        
-        if (!SCC.contains("," + Integer.toString(id) + ",") && !SCC.contains("," + Integer.toString(id) + "-") && !SCC.contains("-" + Integer.toString(id) + ",") && !SCC.contains("-" + Integer.toString(id) + "-") && !SCC.contains(Integer.toString(id) + ",") && !SCC.contains(Integer.toString(id) + "-")){
-            SCC += Integer.toString(id) + "-";
-        }
-        return SCC;
-    }
-
-    public Grafo getTranspose() {
-        Grafo g = new Grafo(cantidadVertices);
-        for (int i = 0; i < cantidadVertices; i++) {
-            int idUser = listaAdy[i].getHead().getId();
-            String user = listaAdy[i].getHead().getDato();
-            Nodo recorrido = listaAdy[i].getHead().getNext();
-
-           
-            if (g.listaAdy[idUser] == null){
-                g.insertaVerticeT(user, idUser);
-            } 
-            while (recorrido != null){
-                int idConeccion = recorrido.getId();
-                String coneccion = recorrido.getDato();
-
-                if (g.listaAdy[idConeccion] == null){
-                    g.insertaVerticeT(coneccion, idConeccion);
-                    g.insertarConeccion(idConeccion, user, idUser);
-                } else {
-                    g.insertarConeccion(idConeccion, user, idUser);
-                }
-                recorrido = recorrido.getNext();
-
-            }
-                
-        }
-        return g;
-    }
-
-    public void fillOrder(int i, boolean visited[], Pila pila) {
-        visited[i] = true;
-        Nodo recorrido = listaAdy[i].getHead().getNext();
-        
-        while (recorrido != null){
-            if (!visited[recorrido.getId()])
-                fillOrder(recorrido.getId(), visited, pila);
-            recorrido = recorrido.getNext();
-        }
-
-        pila.InsertarNodo(i);
-    }
-
+ 
+    /**
+     * Descripcion: Algoritmo de Kosaraju
+     * @autor: Maria Martinez
+     * @version: 29/09/23
+     */
     public void printSCCs() {
         Pila pila = new Pila();
 
@@ -291,6 +282,101 @@ public class Grafo {
         
     }
     
+    /**
+     * Descripcion: Inserta en una pila el nodo de los usuarios segun el recorrido de las conecciones
+     * @autor: Maria Martinez
+     * @version: 29/09/23
+     * @param id: Indica el id del usuario a buscar
+     * @param visited: Array de elementos booleanos, donde cada posicion corresponde a un usuario
+     * @param pila: Pila donde se almacenaran nodos usuario
+     */
+    public void fillOrder(int i, boolean visited[], Pila pila) {
+        visited[i] = true;
+        NodoUsuario recorrido = listaAdy[i].getHead().getNext();
+        
+        while (recorrido != null){
+            if (!visited[recorrido.getId()])
+                fillOrder(recorrido.getId(), visited, pila);
+            recorrido = recorrido.getNext();
+        }
+
+        pila.InsertarNodo(i);
+    }
+    
+    
+     /**
+     * Descripcion: Genera el grafo transpuesto
+     * @autor: Maria Martinez
+     * @version: 29/09/23
+     * @return Grafo transpuesto
+     */
+    public Grafo getTranspose() {
+        Grafo g = new Grafo(cantidadVertices);
+        for (int i = 0; i < cantidadVertices; i++) {
+            int idUser = listaAdy[i].getHead().getId();
+            String user = listaAdy[i].getHead().getDato();
+            NodoUsuario recorrido = listaAdy[i].getHead().getNext();
+
+           
+            if (g.listaAdy[idUser] == null){
+                g.insertaVerticeT(user, idUser);
+            } 
+            while (recorrido != null){
+                int idConeccion = recorrido.getId();
+                String coneccion = recorrido.getDato();
+
+                if (g.listaAdy[idConeccion] == null){
+                    g.insertaVerticeT(coneccion, idConeccion);
+                    g.insertarConeccion(idConeccion, user, idUser);
+                } else {
+                    g.insertarConeccion(idConeccion, user, idUser);
+                }
+                recorrido = recorrido.getNext();
+
+            }
+                
+        }
+        return g;
+    }
+    
+    
+    /**
+     * Descripcion: Busqueda en profundidad para saber los nodos fuertemente conectados
+     * @autor: Maria Martinez
+     * @version: 29/09/23
+     * @param id: Indica el id del usuario a buscar
+     * @param visited: Array de elementos booleanos, donde cada posicion corresponde a un usuario
+     * @return String que contiene el tipo de coneccion entre los usuarios segun su id
+     */
+    public String DFSUtil(int id, boolean visited[]) {
+        visited[id] = true;
+        int n;
+        NodoUsuario recorrido = listaAdy[id].getHead().getNext();
+        
+        if (recorrido!=null){
+            while (recorrido != null){
+            n = recorrido.getId();
+            if (!visited[n]){
+                SCC += Integer.toString(n) + ",";
+                DFSUtil(n, visited);
+            }
+            recorrido = recorrido.getNext();
+            }
+        }
+        
+        
+        if (!SCC.contains("," + Integer.toString(id) + ",") && !SCC.contains("," + Integer.toString(id) + "-") && !SCC.contains("-" + Integer.toString(id) + ",") && !SCC.contains("-" + Integer.toString(id) + "-") && !SCC.contains(Integer.toString(id) + ",") && !SCC.contains(Integer.toString(id) + "-")){
+            SCC += Integer.toString(id) + "-";
+        }
+        return SCC;
+    }
+    
+    /**
+     * Descripcion: Genera los nodos y aristas del grafo para su representacion visual con los componentes fuertemente conectados (SCC) haciendo uso de la libreria GraphStream
+     * @autor: Maria Martinez
+     * @version: 29/09/23
+     * @param S: Array que contiene el id de los usuarios y cuales son fuertemente conectados
+     */
     public void MostrarSCC(String S []){
         Graph graph = new MultiGraph("Grafo");
         System.setProperty("org.graphstream.ui", "swing");
@@ -320,7 +406,7 @@ public class Grafo {
         
         
         for (int i = 0; i < cantidadVertices; i++){
-            Nodo recorrido = listaAdy[i].getHead().getNext();
+            NodoUsuario recorrido = listaAdy[i].getHead().getNext();
             String etiquetaA = listaAdy[i].getHead().getDato().replaceAll("\\p{C}", "");
             
             while (recorrido != null){
@@ -336,6 +422,15 @@ public class Grafo {
         viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
     }
     
+    
+    /**
+     * Descripcion: Inserta los nodos fuertemente conectados en el grafo de GraphStream dado un color
+     * @autor: Maria Martinez
+     * @version: 29/09/23
+     * @param nodes: Array que contiene los id de los usuarios
+     * @param graph: Grafo de GraphStream
+     * @param rbg: Color en rbg para los nodos
+     */
     public void NodosSCC(String nodes[], Graph graph, String rbg){
         for (int j = 0; j < nodes.length; j++){
             int id =  Integer.parseInt(nodes[j]);
@@ -347,6 +442,14 @@ public class Grafo {
         }
     }
     
+    
+    /**
+     * Descripcion: Genera los colores en rbg para cada conjunto de nodos fuertemente conectados
+     * @autor: Maria Martinez
+     * @version: 29/09/23
+     * @param usuario: Indica la cantidad de SCC
+     * @return Array donde cada elemento corresponde al color rbg de cada conjunto de nodos fuertemente conectados
+     */
     public String [] RBG(int size){
         String [] rbg = new String[size];
         

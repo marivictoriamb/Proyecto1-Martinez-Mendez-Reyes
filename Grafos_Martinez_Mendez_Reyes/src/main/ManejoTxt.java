@@ -3,16 +3,34 @@ package main;
 import javax.swing.JOptionPane;
 import java.io.*;
 
-public class User {
+/**
+* Descripcion: Clase que se encarga del manejo de los archivos txt y su contenido en el grafo
+* @autor: Maria Martinez
+* @version: 18/10/23      
+*/
+
+public class ManejoTxt {
     private Grafo grafo;
     private int size;
     
-    public User(){
+    
+    /**
+     * Descripcion: Constructor de la clase User
+     * @autor: Maria Martinez
+     * @version: 29/09/23
+     */
+    public ManejoTxt(){
         grafo = null;
         size = 0;
     }
     
-    
+    /**
+     * Descripcion: Agrega en el grafo los usuarios y sus relaciones 
+     * @autor: Maria Martinez
+     * @version: 29/09/23
+     * @param divide: Array que contiene el nombre de los usuarios y sus correspondientes relaciones
+     *          
+     */
     public void Save(String []divide){
         
         int start = 0;
@@ -56,6 +74,15 @@ public class User {
         
                 
     }
+    
+    
+    /**
+     * Descripcion: Guarda en el txt cargado su contenido modificado por el programa
+     * @autor: Mauricio Mendez
+     * @version: 18/10/23
+     * @param txt: Archivo del txt cargado
+     * @param contenido: Contenido del txt modificado / Informacion del grafo
+     */
     public void ActualizarFile(File txt, String contenido){
         try{
             PrintWriter salida = new PrintWriter(txt);

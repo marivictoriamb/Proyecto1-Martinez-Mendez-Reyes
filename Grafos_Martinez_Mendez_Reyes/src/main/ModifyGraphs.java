@@ -8,11 +8,12 @@ import java.io.File;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Descripcion: Interfaz para mostrar el contenido del grafo
  * @author mariv
+ * @version 18/10/2023
  */
 public class ModifyGraphs extends javax.swing.JFrame {
-    User user = new User();
+    ManejoTxt user = new ManejoTxt();
     private String [] filetxt;
     private File direcciontxt;
     
@@ -83,7 +84,7 @@ public class ModifyGraphs extends javax.swing.JFrame {
         });
         getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, 254, -1));
 
-        jButton1.setBackground(new java.awt.Color(204, 204, 204));
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 0, 51));
         jButton1.setText("Eliminar");
@@ -148,7 +149,7 @@ public class ModifyGraphs extends javax.swing.JFrame {
         getContentPane().add(Box2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 370, -1, -1));
 
         Relacionar.setBackground(new java.awt.Color(255, 255, 255));
-        Relacionar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        Relacionar.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         Relacionar.setForeground(new java.awt.Color(0, 0, 51));
         Relacionar.setText("Relacionar");
         Relacionar.addActionListener(new java.awt.event.ActionListener() {
@@ -159,7 +160,7 @@ public class ModifyGraphs extends javax.swing.JFrame {
         getContentPane().add(Relacionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 370, -1, -1));
 
         Llenarbox.setBackground(new java.awt.Color(255, 255, 255));
-        Llenarbox.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        Llenarbox.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         Llenarbox.setForeground(new java.awt.Color(0, 0, 51));
         Llenarbox.setText("Ver Usuarios");
         Llenarbox.addActionListener(new java.awt.event.ActionListener() {
@@ -181,12 +182,21 @@ public class ModifyGraphs extends javax.swing.JFrame {
     
 
     
-    public void setDato(User user){
+    public void setDato(ManejoTxt user){
         this.user = user;
     }
     
+    
+    /**
+     * Descripcion: Regresa a la interfaz principal
+     * @autor: Maria Martinez
+     * @version: 29/09/23
+     * @param evt
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // El main de la interfaz principal
+        /**
+         * Descripcion: El main de la interfaz principal
+         */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Main main = new Main();
@@ -209,6 +219,12 @@ public class ModifyGraphs extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    /**
+     * Descripcion: Agrega un usuario al txt utilizado para generar el grafo
+     * @autor: Mauricio Mendez
+     * @version: 18/10/23
+     * @param evt
+     */
     private void AgregarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarNombreActionPerformed
         Grafo nuevografo = new Grafo(filetxt.length+1);
         String nombre = TextNombre.getText();
@@ -226,22 +242,53 @@ public class ModifyGraphs extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TextNombreActionPerformed
 
+    
+    /**
+     * Descripcion: Llena los combobox con la informacion del grafo
+     * @autor: Mauricio Mendez
+     * @version: 18/10/23
+     * @param evt
+     */
     private void LlenarboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LlenarboxActionPerformed
-        for (int i = 1; !filetxt[i].replaceAll("\\p{C}", "").equals("relaciones"); i++) {
-                 Box1.addItem(filetxt[i].replaceAll("\\p{C}", ""));
-                 Box2.addItem(filetxt[i].replaceAll("\\p{C}", ""));
-                     }
+        if (evt.getSource() == AgregarNombre){
+            for (int i = 1; !filetxt[i].replaceAll("\\p{C}", "").equals("relaciones"); i++) {
+                Box1.addItem(filetxt[i].replaceAll("\\p{C}", ""));
+                Box2.addItem(filetxt[i].replaceAll("\\p{C}", ""));
+            }
+        } else if (evt.getSource() == jButton1){
+            for (int i = 1; !filetxt[i].replaceAll("\\p{C}", "").equals("relaciones"); i++) {
+                // nombreComboBoxEliminar.addItem(filetxt[i].replaceAll("\\p{C}", ""));            
+            }
+        } else{
+            for (int i = 1; !filetxt[i].replaceAll("\\p{C}", "").equals("relaciones"); i++) {
+                Box1.addItem(filetxt[i].replaceAll("\\p{C}", ""));
+                Box2.addItem(filetxt[i].replaceAll("\\p{C}", ""));
+                // nombreComboBoxEliminar.addItem(filetxt[i].replaceAll("\\p{C}", ""));            
+            }
+        }
     }//GEN-LAST:event_LlenarboxActionPerformed
 
+    
+    /**
+     * Descripcion: Agrega una coneccion entre usuarios al txt utilizado para generar el grafo
+     * @autor: Mauricio Mendez
+     * @version: 18/10/23
+     * @param evt
+     */
     private void RelacionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RelacionarActionPerformed
-        Grafo nuevografo = new Grafo(filetxt.length+1);
-        if(Box1.getSelectedItem().toString().equals(Box2.getSelectedItem())){
-            JOptionPane.showMessageDialog(null, "Error! \n Se deben relacionar ususarios diferentes.");
-        }else{
-            String relacion = Box1.getSelectedItem().toString()+", "+Box2.getSelectedItem();
-            setFiletxt(nuevografo.RelacionarUsuario(relacion, filetxt));
-            user.Save(filetxt);
+        if (Box1.getSelectedItem() != null){
+            Grafo nuevografo = new Grafo(filetxt.length+1);
+            if(Box1.getSelectedItem().toString().equals(Box2.getSelectedItem())){
+                JOptionPane.showMessageDialog(null, "Error! \n Se deben relacionar ususarios diferentes.");
+            }else{
+                String relacion = Box1.getSelectedItem().toString()+", "+Box2.getSelectedItem();
+                setFiletxt(nuevografo.RelacionarUsuario(relacion, filetxt));
+                user.Save(filetxt);
+            }
+        } else{
+            JOptionPane.showMessageDialog(null, "Error! \n Cargue los usuarios");
         }
+        
 
     }//GEN-LAST:event_RelacionarActionPerformed
 
@@ -280,15 +327,6 @@ public class ModifyGraphs extends javax.swing.JFrame {
         });
     }
     
-    public boolean Check(){
-        int maximo = 10;
-        
-        if (maximo-user.getSize() > 0){
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AgregarNombre;

@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  * @author mariv
  */
 public class ShowGraphs extends javax.swing.JFrame {
-    User user = new User();
+    ManejoTxt user = new ManejoTxt();
     private String [] filetxt;
     private File direcciontxt;
     
@@ -118,7 +118,7 @@ public class ShowGraphs extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void setDato(User user){
+    public void setDato(ManejoTxt user){
         this.user = user;
     }
 

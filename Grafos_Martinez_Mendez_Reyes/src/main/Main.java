@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package main;
 import java.io.File;
 import java.io.FileReader;
@@ -10,11 +6,12 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
- *
- * @author mariv
+ * Descripcion: Interfaz Principal
+ * @author Maria Martinez
+ * @version: 22/10/2023
  */
 public class Main extends javax.swing.JFrame {
-    private User user = new User();
+    private ManejoTxt user = new ManejoTxt();
     private String [] filetxt;
     private File direcciontxt;
     private boolean savetxt= false;
@@ -127,6 +124,13 @@ public class Main extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    /**
+     * Descripcion: Actualiza un txt segun las modificaciones hechas del contenido de dicho txt en el programa.
+     * @autor: Mauricio Mendez
+     * @version: 18/10/23
+     * @param evt
+     */
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         
         if (user.getGrafo() != null){
@@ -143,6 +147,13 @@ public class Main extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    /**
+     * Descripcion: Abre la interfaz de ModifyGraphs
+     *              Si no hay datos almacenados en el grafo, carga los datos del txt original
+     * @autor: Maria Martinez
+     * @version: 22/10/23
+     * @param evt
+     */
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         if (user.getGrafo() == null){
             try{
@@ -166,8 +177,10 @@ public class Main extends javax.swing.JFrame {
                 e.printStackTrace( );
             }
         }
-
-        //Main de la interfaz modify graphs
+        
+        /**
+        * Descripcion: Abre la interfaz de ModifyGraphs
+        */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 ModifyGraphs i3 = new ModifyGraphs();
@@ -183,24 +196,31 @@ public class Main extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    /**
+     * Descripcion: Abre la interfaz de ShowGraphs
+     *              Si no hay datos almacenados en el grafo, carga los datos del txt original
+     * @autor: Maria Martinez
+     * @version: 22/10/23
+     * @param evt
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if (user.getGrafo() == null){
             try{
-            FileReader lector = new FileReader ("UsuariosOriginal.txt");
-            String contenido = "";
-            int valor = lector.read( );
+                FileReader lector = new FileReader ("UsuariosOriginal.txt");
+                String contenido = "";
+                int valor = lector.read( );
 
-            while (valor != -1){
-                contenido += (char)valor;
-                valor = lector.read( );
-            }
+                while (valor != -1){
+                    contenido += (char)valor;
+                    valor = lector.read( );
+                }
 
-            String [] divide = contenido.split("\n");
-            filetxt= divide;
-            user.Save(filetxt);
+                String [] divide = contenido.split("\n");
+                filetxt= divide;
+                user.Save(filetxt);
 
-            File fichero = new File("UsuariosOriginal.txt");
-            setDirecciontxt(fichero);
+                File fichero = new File("UsuariosOriginal.txt");
+                setDirecciontxt(fichero);
 
             } catch (Exception e){
                 e.printStackTrace( );
@@ -208,7 +228,9 @@ public class Main extends javax.swing.JFrame {
         }
  
         
-        // El main de la interfaz de show graphs
+        /**
+        * Descripcion: Abre la interfaz de ShowGraphs
+        */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 ShowGraphs i2 = new ShowGraphs();
@@ -224,6 +246,13 @@ public class Main extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    /**
+     * Descripcion: Utiliza JFileChooser para poder escoger un archivo txt que contenga los datos del grafo
+              Llama a ManejoTxt.Save() para poder guardar los datos del txt en una estructura de datos
+     * @autor: Maria Martinez
+     * @version: 29/09/23
+     * @param evt
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
         if (user.getGrafo() != null && savetxt == false){
@@ -270,7 +299,7 @@ public class Main extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    public void setDato(User user){
+    public void setDato(ManejoTxt user){
         this.user = user;
     }
     public void setFiletxt(String[] filetxt) {

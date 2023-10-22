@@ -1,17 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package main;
 
 /**
  *
  * @author mariv
+ * @version 29/09/2023
  */
 public class NodoPila {
     private NodoPila next;
     private int id;
     
+    
+    /**
+     * Descripcion: Constructor de la clase NodoPila
+     * @autor: Maria Martinez
+     * @version: 29/09/23
+     * @param id: ID del usuario
+     */
     public NodoPila (int id) {
         this.id = id;
         next = null;
