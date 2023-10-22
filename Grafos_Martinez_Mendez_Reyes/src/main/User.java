@@ -1,6 +1,7 @@
 package main;
 
 import javax.swing.JOptionPane;
+import java.io.*;
 
 public class User {
     private Grafo grafo;
@@ -46,6 +47,15 @@ public class User {
         }
         
                 
+    }
+    public void ActualizarFile(File txt, String contenido){
+        try{
+            PrintWriter salida = new PrintWriter(txt);
+            salida.print(contenido);
+            salida.close();
+        }catch(Exception e){
+            System.out.println(e);
+        }
     }
 
     public Grafo getGrafo() {

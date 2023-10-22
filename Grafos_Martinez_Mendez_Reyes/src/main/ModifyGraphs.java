@@ -4,6 +4,7 @@
  */
 package main;
 
+import java.io.File;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,9 +14,16 @@ import javax.swing.JOptionPane;
 public class ModifyGraphs extends javax.swing.JFrame {
     User user = new User();
     private String [] filetxt;
+    private File direcciontxt;
+    
     public void setFiletxt(String[] filetxt) {
         this.filetxt = filetxt;
     }
+
+    public void setDirecciontxt(File direcciontxt) {
+        this.direcciontxt = direcciontxt;
+    }
+    
 
     /**
      * Creates new form ModifyGraphs
@@ -46,7 +54,10 @@ public class ModifyGraphs extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         Box1 = new javax.swing.JComboBox<>();
         Box2 = new javax.swing.JComboBox<>();
-        jButton3 = new javax.swing.JButton();
+        Relacionar = new javax.swing.JButton();
+        Llenarbox = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -108,7 +119,7 @@ public class ModifyGraphs extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Nueva Relacion ");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 380, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 370, -1, -1));
 
         AgregarNombre.setBackground(new java.awt.Color(255, 255, 255));
         AgregarNombre.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
@@ -126,12 +137,43 @@ public class ModifyGraphs extends javax.swing.JFrame {
         jLabel5.setText("Agregar Usuario");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, -1, -1));
 
-        getContentPane().add(Box1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 380, -1, -1));
+        Box1.setBackground(new java.awt.Color(255, 255, 255));
+        Box1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        Box1.setForeground(new java.awt.Color(0, 0, 51));
+        getContentPane().add(Box1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, -1, -1));
 
-        getContentPane().add(Box2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 380, -1, -1));
+        Box2.setBackground(new java.awt.Color(255, 255, 255));
+        Box2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        Box2.setForeground(new java.awt.Color(0, 0, 51));
+        getContentPane().add(Box2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 370, -1, -1));
 
-        jButton3.setText("Relacionar");
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 370, -1, -1));
+        Relacionar.setBackground(new java.awt.Color(255, 255, 255));
+        Relacionar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        Relacionar.setForeground(new java.awt.Color(0, 0, 51));
+        Relacionar.setText("Relacionar");
+        Relacionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RelacionarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Relacionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 370, -1, -1));
+
+        Llenarbox.setBackground(new java.awt.Color(255, 255, 255));
+        Llenarbox.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        Llenarbox.setForeground(new java.awt.Color(0, 0, 51));
+        Llenarbox.setText("Ver Usuarios");
+        Llenarbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LlenarboxActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Llenarbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, -1, -1));
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, -1, -1));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/ImagenModify.png"))); // NOI18N
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 490));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -150,6 +192,7 @@ public class ModifyGraphs extends javax.swing.JFrame {
                 Main main = new Main();
                 main.setDato(user);
                 main.setFiletxt(filetxt);
+                main.setDirecciontxt(direcciontxt);
                 main.setVisible(true);
             }
         });
@@ -167,46 +210,40 @@ public class ModifyGraphs extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void AgregarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarNombreActionPerformed
+        Grafo nuevografo = new Grafo(filetxt.length+1);
         String nombre = TextNombre.getText();
         TextNombre.setText("Agrege el nombre de usuario (@ejemplo)");
-//        Validamos el formato de usuario
-        if(nombre.isEmpty()==true || nombre.length()<2 || !Character.toString(nombre.charAt(0)).equals("@")|| nombre.contains(" ") ){
-            JOptionPane.showMessageDialog(null, "Error\nIngrese el formato adecuado.");
-        }else{
-//            Verificamos si el usuario ingresado ya existe
-            boolean encontrado = false;           
-            for (int i = 0;  i<filetxt.length; i++) {
-                if(filetxt[i].replaceAll("\\p{C}", "").equals(nombre)==true){
-                    JOptionPane.showMessageDialog(null, "ERROR!\n\nEl usuario ya existe");
-                 encontrado = true;
-                } 
-            }
-            if(encontrado== false){
-//                Añadimos en nuevo usuario.
-                String [] newusuario= new String[filetxt.length+1];
-        int aux =0;        
-        for (int i = 0; i < filetxt.length+1; i++) {
-            
-            if(filetxt[aux].replaceAll("\\p{C}", "").equals("relaciones")){
-                newusuario[aux]= nombre;
-                newusuario[aux+1]= filetxt[aux];
-                i++;
-            }else{
-                newusuario[i]=filetxt[aux];
-            } 
-            aux++;
-        }
-        
-        filetxt = newusuario;
+        setFiletxt(nuevografo.AñadirUsuario(nombre, filetxt));
         user.Save(filetxt);
-        JOptionPane.showMessageDialog(null, "El usuario ha sido añadido exitosamente");
-            }
-        }
+        for (int i = 1; !filetxt[i].replaceAll("\\p{C}", "").equals("relaciones"); i++) {
+                 Box1.addItem(filetxt[i].replaceAll("\\p{C}", ""));
+                 Box2.addItem(filetxt[i].replaceAll("\\p{C}", ""));
+                     }
+
     }//GEN-LAST:event_AgregarNombreActionPerformed
 
     private void TextNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TextNombreActionPerformed
+
+    private void LlenarboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LlenarboxActionPerformed
+        for (int i = 1; !filetxt[i].replaceAll("\\p{C}", "").equals("relaciones"); i++) {
+                 Box1.addItem(filetxt[i].replaceAll("\\p{C}", ""));
+                 Box2.addItem(filetxt[i].replaceAll("\\p{C}", ""));
+                     }
+    }//GEN-LAST:event_LlenarboxActionPerformed
+
+    private void RelacionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RelacionarActionPerformed
+        Grafo nuevografo = new Grafo(filetxt.length+1);
+        if(Box1.getSelectedItem().toString().equals(Box2.getSelectedItem())){
+            JOptionPane.showMessageDialog(null, "Error! \n Se deben relacionar ususarios diferentes.");
+        }else{
+            String relacion = Box1.getSelectedItem().toString()+", "+Box2.getSelectedItem();
+            setFiletxt(nuevografo.RelacionarUsuario(relacion, filetxt));
+            user.Save(filetxt);
+        }
+
+    }//GEN-LAST:event_RelacionarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -257,14 +294,17 @@ public class ModifyGraphs extends javax.swing.JFrame {
     private javax.swing.JButton AgregarNombre;
     private javax.swing.JComboBox<String> Box1;
     private javax.swing.JComboBox<String> Box2;
+    private javax.swing.JButton Llenarbox;
+    private javax.swing.JButton Relacionar;
     private javax.swing.JTextField TextNombre;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

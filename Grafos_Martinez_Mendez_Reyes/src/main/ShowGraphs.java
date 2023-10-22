@@ -4,6 +4,7 @@
  */
 package main;
 
+import java.io.File;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,6 +14,7 @@ import javax.swing.JOptionPane;
 public class ShowGraphs extends javax.swing.JFrame {
     User user = new User();
     private String [] filetxt;
+    private File direcciontxt;
     
 
     /**
@@ -77,7 +79,7 @@ public class ShowGraphs extends javax.swing.JFrame {
         jLabel6.setText("S");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
 
-        jToggleButton1.setBackground(new java.awt.Color(204, 204, 204));
+        jToggleButton1.setBackground(new java.awt.Color(255, 255, 255));
         jToggleButton1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jToggleButton1.setForeground(new java.awt.Color(0, 0, 51));
         jToggleButton1.setText("Identificar componentes fuertemente conectados");
@@ -88,7 +90,7 @@ public class ShowGraphs extends javax.swing.JFrame {
         });
         getContentPane().add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 420, -1, -1));
 
-        jToggleButton2.setBackground(new java.awt.Color(204, 204, 204));
+        jToggleButton2.setBackground(new java.awt.Color(255, 255, 255));
         jToggleButton2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jToggleButton2.setForeground(new java.awt.Color(0, 0, 51));
         jToggleButton2.setText("< --");
@@ -99,7 +101,7 @@ public class ShowGraphs extends javax.swing.JFrame {
         });
         getContentPane().add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 410, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(204, 204, 204));
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 0, 51));
         jButton1.setText("Mostrar Grafo");
@@ -109,6 +111,8 @@ public class ShowGraphs extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, -1, -1));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/ImagenShow.png"))); // NOI18N
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));
 
         pack();
@@ -121,6 +125,11 @@ public class ShowGraphs extends javax.swing.JFrame {
     public void setFiletxt(String[] filetxt) {
         this.filetxt = filetxt;
     }
+
+    public void setDirecciontxt(File direcciontxt) {
+        this.direcciontxt = direcciontxt;
+    }
+    
     
     
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
@@ -131,6 +140,7 @@ public class ShowGraphs extends javax.swing.JFrame {
                 Main main = new Main();
                 main.setDato(user);
                 main.setFiletxt(filetxt);
+                main.setDirecciontxt(direcciontxt);
                 main.setVisible(true);
             }
         });
