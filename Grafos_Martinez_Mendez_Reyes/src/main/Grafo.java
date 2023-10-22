@@ -208,7 +208,7 @@ public class Grafo {
         }
         
         
-        if (!SCC.contains(Integer.toString(id))){
+        if (!SCC.contains("," + Integer.toString(id) + ",") && !SCC.contains("," + Integer.toString(id) + "-") && !SCC.contains("-" + Integer.toString(id) + ",") && !SCC.contains("-" + Integer.toString(id) + "-") && !SCC.contains(Integer.toString(id) + ",") && !SCC.contains(Integer.toString(id) + "-")){
             SCC += Integer.toString(id) + "-";
         }
         return SCC;

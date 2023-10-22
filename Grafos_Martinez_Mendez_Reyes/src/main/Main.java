@@ -144,45 +144,84 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        //Main de la interfaz modify graphs
-        if(user.getGrafo() != null){
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    ModifyGraphs i3 = new ModifyGraphs();
-                    i3.setDato(user);
-                    i3.setFiletxt(filetxt);
-                    i3.setDirecciontxt(direcciontxt);
-                    i3.setVisible(true);
-                }
-            });
+        if (user.getGrafo() == null){
+            try{
+            FileReader lector = new FileReader ("UsuariosOriginal.txt");
+            String contenido = "";
+            int valor = lector.read( );
 
-            // Ocultar esta interfaz
-            this.setVisible(false);
-        }else{
-            JOptionPane.showMessageDialog(rootPane, "ERROR\n\nNo se ha cargado ningun archivo todavia" );
+            while (valor != -1){
+                contenido += (char)valor;
+                valor = lector.read( );
+            }
+
+            String [] divide = contenido.split("\n");
+            filetxt= divide;
+            user.Save(filetxt);
+
+            File fichero = new File("UsuariosOriginal.txt");
+            setDirecciontxt(fichero);
+
+            } catch (Exception e){
+                e.printStackTrace( );
+            }
         }
 
+        //Main de la interfaz modify graphs
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                ModifyGraphs i3 = new ModifyGraphs();
+                i3.setDato(user);
+                i3.setFiletxt(filetxt);
+                i3.setDirecciontxt(direcciontxt);
+                i3.setVisible(true);
+            }
+        });
+
+        // Ocultar esta interfaz
+        this.setVisible(false);
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if (user.getGrafo() == null){
+            try{
+            FileReader lector = new FileReader ("UsuariosOriginal.txt");
+            String contenido = "";
+            int valor = lector.read( );
 
-        if (user.getGrafo() != null){
-            // El main de la interfaz de show graphs
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    ShowGraphs i2 = new ShowGraphs();
-                    i2.setDato(user);
-                    i2.setFiletxt(filetxt);
-                    i2.setDirecciontxt(direcciontxt);
-                    i2.setVisible(true);
-                }
-            });
+            while (valor != -1){
+                contenido += (char)valor;
+                valor = lector.read( );
+            }
 
-            // Ocultar esta interfaz
-            this.setVisible(false);
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "ERROR\n\nNo se ha cargado ningun archivo todavia" );
+            String [] divide = contenido.split("\n");
+            filetxt= divide;
+            user.Save(filetxt);
+
+            File fichero = new File("UsuariosOriginal.txt");
+            setDirecciontxt(fichero);
+
+            } catch (Exception e){
+                e.printStackTrace( );
+            }
         }
+ 
+        
+        // El main de la interfaz de show graphs
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                ShowGraphs i2 = new ShowGraphs();
+                i2.setDato(user);
+                i2.setFiletxt(filetxt);
+                i2.setDirecciontxt(direcciontxt);
+                i2.setVisible(true);
+            }
+        });
+
+        // Ocultar esta interfaz
+        this.setVisible(false);
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
