@@ -44,58 +44,31 @@ public class ModifyGraphs extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        eliminarNombre = new javax.swing.JButton();
         TextNombre = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         AgregarNombre = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
         Box1 = new javax.swing.JComboBox<>();
         Box2 = new javax.swing.JComboBox<>();
         Relacionar = new javax.swing.JButton();
         Llenarbox = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        boxUsuarios = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Modificar Usuarios de Nombre");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 360, -1));
-
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Eliminar Usuario");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, -1, -1));
-
-        jTextField1.setBackground(new java.awt.Color(153, 153, 153));
-        jTextField1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(102, 102, 102));
-        jTextField1.setText("Agrege el nombre de usuario (@ejemplo)");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        eliminarNombre.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        eliminarNombre.setForeground(new java.awt.Color(0, 0, 51));
+        eliminarNombre.setText("Eliminar");
+        eliminarNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                eliminarNombreActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, 254, -1));
+        getContentPane().add(eliminarNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 51));
-        jButton1.setText("Eliminar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 180, -1, -1));
-
-        TextNombre.setBackground(new java.awt.Color(255, 255, 255));
         TextNombre.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         TextNombre.setForeground(new java.awt.Color(102, 102, 102));
         TextNombre.setText("Agrege el nombre de usuario (@ejemplo)");
@@ -104,25 +77,19 @@ public class ModifyGraphs extends javax.swing.JFrame {
                 TextNombreActionPerformed(evt);
             }
         });
-        getContentPane().add(TextNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 300, -1, -1));
+        getContentPane().add(TextNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 200, -1, -1));
 
         jButton2.setBackground(new java.awt.Color(204, 204, 204));
         jButton2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 0, 51));
-        jButton2.setText("< --");
+        jButton2.setText("<--");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 60, 30));
 
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Nueva Relacion ");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 370, -1, -1));
-
-        AgregarNombre.setBackground(new java.awt.Color(255, 255, 255));
         AgregarNombre.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         AgregarNombre.setForeground(new java.awt.Color(0, 0, 51));
         AgregarNombre.setText("Agregar");
@@ -131,24 +98,26 @@ public class ModifyGraphs extends javax.swing.JFrame {
                 AgregarNombreActionPerformed(evt);
             }
         });
-        getContentPane().add(AgregarNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 300, -1, -1));
+        getContentPane().add(AgregarNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 250, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Agregar Usuario");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, -1, -1));
-
-        Box1.setBackground(new java.awt.Color(255, 255, 255));
         Box1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         Box1.setForeground(new java.awt.Color(0, 0, 51));
-        getContentPane().add(Box1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, -1, -1));
+        Box1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Box1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Box1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 380, -1, -1));
 
-        Box2.setBackground(new java.awt.Color(255, 255, 255));
         Box2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         Box2.setForeground(new java.awt.Color(0, 0, 51));
-        getContentPane().add(Box2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 370, -1, -1));
+        Box2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Box2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Box2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 380, -1, -1));
 
-        Relacionar.setBackground(new java.awt.Color(255, 255, 255));
         Relacionar.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         Relacionar.setForeground(new java.awt.Color(0, 0, 51));
         Relacionar.setText("Relacionar");
@@ -157,9 +126,8 @@ public class ModifyGraphs extends javax.swing.JFrame {
                 RelacionarActionPerformed(evt);
             }
         });
-        getContentPane().add(Relacionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 370, -1, -1));
+        getContentPane().add(Relacionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 430, -1, -1));
 
-        Llenarbox.setBackground(new java.awt.Color(255, 255, 255));
         Llenarbox.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         Llenarbox.setForeground(new java.awt.Color(0, 0, 51));
         Llenarbox.setText("Ver Usuarios");
@@ -168,13 +136,20 @@ public class ModifyGraphs extends javax.swing.JFrame {
                 LlenarboxActionPerformed(evt);
             }
         });
-        getContentPane().add(Llenarbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, -1, -1));
+        getContentPane().add(Llenarbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, -1, 30));
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, -1, -1));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/ImagenModify.png"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 490));
+        boxUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxUsuariosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(boxUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 170, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/imagenModifi.png"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 490));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -209,15 +184,30 @@ public class ModifyGraphs extends javax.swing.JFrame {
         
         // Ocultar esta interfaz
         this.setVisible(false);
+        
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+ /**
+     * Descripcion: elimina un usuario en el txt utilizado y genera el grafo
+     * @autor: Andrea Reyes
+     * @version: 20/10/23
+     * @param evt
+     */
+   
+    private void eliminarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarNombreActionPerformed
+     
+        if (boxUsuarios.getSelectedItem()!=  null){
+        Grafo grafito = new Grafo(filetxt.length-1);
+        String usuario= boxUsuarios.getSelectedItem().toString().replaceAll("\\p{C}", "");
+        setFiletxt(grafito.eliminarUsuario(usuario, filetxt));
+        user.Save(filetxt);
+        LlenarboxActionPerformed(evt);
+        
+      }else{
+          JOptionPane.showMessageDialog(null, "Error! \n Cargue los usuarios");
+      
+      
+      }
+    }//GEN-LAST:event_eliminarNombreActionPerformed
 
     /**
      * Descripcion: Agrega un usuario al txt utilizado para generar el grafo
@@ -225,16 +215,14 @@ public class ModifyGraphs extends javax.swing.JFrame {
      * @version: 18/10/23
      * @param evt
      */
+    
     private void AgregarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarNombreActionPerformed
         Grafo nuevografo = new Grafo(filetxt.length+1);
         String nombre = TextNombre.getText();
         TextNombre.setText("Agrege el nombre de usuario (@ejemplo)");
         setFiletxt(nuevografo.AñadirUsuario(nombre, filetxt));
         user.Save(filetxt);
-        for (int i = 1; !filetxt[i].replaceAll("\\p{C}", "").equals("relaciones"); i++) {
-                 Box1.addItem(filetxt[i].replaceAll("\\p{C}", ""));
-                 Box2.addItem(filetxt[i].replaceAll("\\p{C}", ""));
-                     }
+        LlenarboxActionPerformed(evt);
 
     }//GEN-LAST:event_AgregarNombreActionPerformed
 
@@ -245,27 +233,21 @@ public class ModifyGraphs extends javax.swing.JFrame {
     
     /**
      * Descripcion: Llena los combobox con la informacion del grafo
-     * @autor: Mauricio Mendez
+     * @autor: Mauricio Mendez y Andrea Reyes
      * @version: 18/10/23
      * @param evt
      */
     private void LlenarboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LlenarboxActionPerformed
-        if (evt.getSource() == AgregarNombre){
+       
+        boxUsuarios.removeAllItems();
+        Box1.removeAllItems();
+        Box2.removeAllItems();
+        
             for (int i = 1; !filetxt[i].replaceAll("\\p{C}", "").equals("relaciones"); i++) {
                 Box1.addItem(filetxt[i].replaceAll("\\p{C}", ""));
                 Box2.addItem(filetxt[i].replaceAll("\\p{C}", ""));
+                boxUsuarios.addItem(filetxt[i].replaceAll("\\p{C}", "")); 
             }
-        } else if (evt.getSource() == jButton1){
-            for (int i = 1; !filetxt[i].replaceAll("\\p{C}", "").equals("relaciones"); i++) {
-                // nombreComboBoxEliminar.addItem(filetxt[i].replaceAll("\\p{C}", ""));            
-            }
-        } else{
-            for (int i = 1; !filetxt[i].replaceAll("\\p{C}", "").equals("relaciones"); i++) {
-                Box1.addItem(filetxt[i].replaceAll("\\p{C}", ""));
-                Box2.addItem(filetxt[i].replaceAll("\\p{C}", ""));
-                // nombreComboBoxEliminar.addItem(filetxt[i].replaceAll("\\p{C}", ""));            
-            }
-        }
     }//GEN-LAST:event_LlenarboxActionPerformed
 
     
@@ -291,6 +273,19 @@ public class ModifyGraphs extends javax.swing.JFrame {
         
 
     }//GEN-LAST:event_RelacionarActionPerformed
+
+    
+    private void boxUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxUsuariosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boxUsuariosActionPerformed
+
+    private void Box2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Box2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Box2ActionPerformed
+
+    private void Box1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Box1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Box1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -335,14 +330,10 @@ public class ModifyGraphs extends javax.swing.JFrame {
     private javax.swing.JButton Llenarbox;
     private javax.swing.JButton Relacionar;
     private javax.swing.JTextField TextNombre;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> boxUsuarios;
+    private javax.swing.JButton eliminarNombre;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

@@ -204,6 +204,44 @@ public class Grafo {
     }
     
     
+     /**
+     * Descripcion: Recibe el nombre del usuario a eliminar, modifica el archivo txt para guardar los cambios y de una crea o actualiza el grafo.
+     * @autor: Andrea Reyes
+     * @version: 20/10/23
+     * @param nombre: Ayuda a identificar el usuario a eliminar
+     * @param filetxt: Archivo  que contiene toda la información necesaria para idenficar el usuario
+     * @return Array que elimina al usuario deseado, con el txt modificado 
+     */
+    
+    public String [] eliminarUsuario(String usuario, String [] filetxt){
+            
+        if(filetxt.length<2){
+            JOptionPane.showMessageDialog(null, "Lo siento no se pueden eliminar más usuarios. 🙁");
+            
+        } else {
+      
+            int contador= 0 ; 
+        
+            for (int i = 1; i < filetxt.length; i++) {
+                if ((filetxt[i].replaceAll("\\p{C}", "").contains(usuario))){
+                    contador +=1;}
+            }
+        
+            String [] usuarioeliminar= new String[filetxt.length-contador];
+            int idx=0;
+            
+            for (int j = 0; j < filetxt.length;j++) { 
+                if (!((filetxt[j].replaceAll("\\p{C}", "").contains(usuario)))){
+                    usuarioeliminar[idx]=filetxt[j];
+                        idx++; } 
+            }
+                    
+        filetxt = usuarioeliminar;
+        JOptionPane.showMessageDialog(null, "El usuario ha sido eliminado exitosamente ✅"); 
+        return filetxt; 
+
+        }
+        return filetxt; }
     
     /**
      * Descripcion: Genera los nodos y aristas del grafo para su representacion visual haciendo uso de la libreria GraphStream
@@ -215,8 +253,9 @@ public class Grafo {
         System.setProperty("org.graphstream.ui", "swing");
         graph.setAttribute("ui.stylesheet", "node{\n" +
                 "    size: 30px, 30px;\n" +
-                "    fill-color: #f7f7f0;\n" +
+                "    fill-color: #FFFF66;\n" +
                 "    text-mode: normal; \n" +
+                "    text-size: 17; \n" +
                 "}");
         
         for (int i = 0; i < cantidadVertices; i++){
@@ -263,6 +302,7 @@ public class Grafo {
         for(int i = 0; i < cantidadVertices; i++)
             visited[i] = false;
         
+        gr.setSCC(",");
         while (!pila.IsEmpty()) {
             int id = pila.EliminarNodo();
 
@@ -271,6 +311,7 @@ public class Grafo {
             }
         }
         
+        SCC = SCC.substring(1, SCC.length());
         if (!SCC.contains("-")){
             SCC += "0";
             String [] divide = SCC.split("-");
@@ -365,7 +406,7 @@ public class Grafo {
         }
         
         
-        if (!SCC.contains("," + Integer.toString(id) + ",") && !SCC.contains("," + Integer.toString(id) + "-") && !SCC.contains("-" + Integer.toString(id) + ",") && !SCC.contains("-" + Integer.toString(id) + "-") && !SCC.contains(Integer.toString(id) + ",") && !SCC.contains(Integer.toString(id) + "-")){
+        if (!SCC.contains("," + Integer.toString(id) + ",") && !SCC.contains("," + Integer.toString(id) + "-") && !SCC.contains("-" + Integer.toString(id) + ",") && !SCC.contains("-" + Integer.toString(id) + "-")){
             SCC += Integer.toString(id) + "-";
         }
         return SCC;
@@ -384,6 +425,7 @@ public class Grafo {
                 "    size: 30px, 30px;\n" +
                 "    fill-color: #f7f7f0;\n" +
                 "    text-mode: normal; \n" +
+                "    text-size: 17; \n" +
                 "}");
         
         String rbg[] = RBG(S.length);
@@ -465,5 +507,11 @@ public class Grafo {
         return rbg;
 
     }
+
+    public void setSCC(String SCC) {
+        this.SCC = SCC;
+    }
     
-}
+    
+   
+} 
