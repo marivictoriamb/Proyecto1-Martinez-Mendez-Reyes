@@ -134,7 +134,7 @@ public class Grafo {
      * @return Array que contiene el archivo de texto modificado
      */
     public String [] AñadirUsuario(String nombre, String [] filetxt){
-        if(nombre.isEmpty()==true || nombre.length()<2 || !Character.toString(nombre.charAt(0)).equals("@")|| nombre.contains(" ") ){
+        if(nombre.isEmpty()==true || nombre.length()<2 || !Character.toString(nombre.charAt(0)).equals("@")|| nombre.contains(" ")|| nombre.length()>15 ){
             JOptionPane.showMessageDialog(null, "Error\nIngrese el formato adecuado.");
             
         }else{

@@ -51,7 +51,7 @@ public class ShowGraphs extends javax.swing.JFrame {
                 jToggleButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 300, 30));
+        getContentPane().add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 320, 30));
 
         jToggleButton2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jToggleButton2.setForeground(new java.awt.Color(0, 0, 51));
