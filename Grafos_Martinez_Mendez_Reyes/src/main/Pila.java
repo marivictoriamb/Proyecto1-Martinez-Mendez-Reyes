@@ -2,25 +2,41 @@
 package main;
 
 /**
- *
  * @author mariv
+ * @version 29/09/2023
  */
 public class Pila {  
     private NodoPila head; 
     private int size = 0;
     
+    
+    /**
+     * Descripcion: Constructor de la clase Pila
+     * @autor: Maria Martinez
+     * @version: 29/09/23
+     */
     public Pila(){
         head = null;
         size = 0;
     }
     
-    // Metodo para saber si la pila esta vacia
+    /**
+     * Descripcion: Verifica si la lista esta vacia
+     * @autor: Maria Martinez
+     * @version: 29/09/23
+     * @return Valor booleano
+     */
     public boolean IsEmpty(){
         return (head == null); // If True entonces esta vacia
     }
     
     
-    // Metodo para ingresar un nodo en la pila
+    /**
+     * Descripcion: Inserta el nodo en la pila
+     * @autor: Maria Martinez
+     * @version: 29/09/23
+     * @param id: ID (qque representa un usuario)
+     */
     public void InsertarNodo(int id){
         NodoPila nuevo = new NodoPila(id);
         
@@ -33,7 +49,12 @@ public class Pila {
         size ++;
     }
     
-    // Metodo para eliminar un nodo de la pila
+    /**
+     * Descripcion: Elimina el nodo de la cabeza de la pila
+     * @autor: Maria Martinez
+     * @version: 29/09/23
+     * @return ID (que representa un usuario) eliminado de la pila
+     */
     public int EliminarNodo(){
         int id = head.getId();
         NodoPila recorrido = head.getNext();
