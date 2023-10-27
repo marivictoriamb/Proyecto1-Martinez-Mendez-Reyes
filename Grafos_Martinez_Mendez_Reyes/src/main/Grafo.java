@@ -134,9 +134,11 @@ public class Grafo {
      * @return Array que contiene el archivo de texto modificado
      */
     public String [] AñadirUsuario(String nombre, String [] filetxt){
-        if(nombre.isEmpty()==true || nombre.length()<2 || !Character.toString(nombre.charAt(0)).equals("@")|| nombre.contains(" ")|| nombre.length()>15 ){
+        if(nombre.isEmpty()==true || nombre.length()<2 || !Character.toString(nombre.charAt(0)).equals("@")|| nombre.contains(" ")){
             JOptionPane.showMessageDialog(null, "Error\nIngrese el formato adecuado.");
             
+        }else if (nombre.length()>15){
+            JOptionPane.showMessageDialog(null, "Error\nEl nombre de usuario no puede tener mas de 15 caracteres");
         }else{
 //            Verificamos si el usuario ingresado ya existe
             boolean encontrado = false;           
@@ -312,14 +314,8 @@ public class Grafo {
         }
         
         SCC = SCC.substring(1, SCC.length());
-        if (!SCC.contains("-")){
-            SCC += "0";
-            String [] divide = SCC.split("-");
-            MostrarSCC(divide);
-        } else {
-            String [] divide = SCC.split("-");
-            MostrarSCC(divide);
-        }
+        String [] divide = SCC.split("-");
+        MostrarSCC(divide);
         
     }
     

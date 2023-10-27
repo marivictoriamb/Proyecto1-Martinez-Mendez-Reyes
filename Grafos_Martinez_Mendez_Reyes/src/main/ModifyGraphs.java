@@ -70,7 +70,7 @@ public class ModifyGraphs extends javax.swing.JFrame {
         getContentPane().add(eliminarNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, -1, -1));
 
         TextNombre.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        TextNombre.setForeground(new java.awt.Color(102, 102, 102));
+        TextNombre.setForeground(new java.awt.Color(0, 0, 51));
         TextNombre.setText("Agrege el nombre de usuario (@ejemplo)");
         TextNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
